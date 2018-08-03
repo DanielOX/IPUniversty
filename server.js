@@ -5,10 +5,21 @@ const app = express();
 
 app.use(require('express-ajax'));
 app.set('view engine','hbs')
+hbs.registerHelper('studentView',(data)=>{
+    return `
+    <div>
+        <h5>Student Name : ${data[0].Name}</h5>   
+        <h5>Batch : ${data[0].Batch}</h5>
+        <h5>Examination : ${data[0].Examination}</h5>
+        <h5>Institution : ${data[0].Institution}</h5>
+        </div>
+    `
+})
 hbs.registerHelper('jsonParse',(data) =>{
-    let dataToView = "";
+    let dataToView = "" ;
     data.forEach(result => { 
     result.Marks.forEach( marks => dataToView += `
+    
      <tr>
      <td>${marks.Name}</td>
      <td>${marks.Credits}</td>
@@ -18,7 +29,7 @@ hbs.registerHelper('jsonParse',(data) =>{
      <td>${marks.Grade}</td>
      </tr>
      `)
-     dataToView += `<tr> <td> Shwoing result for semester : ${result.Semester}</td> </tr>`
+     dataToView += `<tr> <td><br> <strong><br> Showing above result for semester : ${result.Semester} <br> </strong><br> </td> </tr>`
 
     })
     return dataToView
