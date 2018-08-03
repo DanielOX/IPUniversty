@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<style>
+    button {
+        padding:12px 24px;
+        border-radius: 25px;
+        border:1px solid #ddd;
+        background-color:white;
+        outline: none;
+    }
+    input {
+        padding: 12px 24px;
+        border-radius: 25px;
+        outline:none;
+        border:1px solid #ddd;
+        background-color:white;
+    }
+</style>
+<body>
+    <div>
+            <center>
+        <input type="number"  placeholder="Enter Roll No" /> &nbsp;
+        <button id="search-btn">Search</button>
+            </center>
+    </div>
+<script>
+    document.getElementById('search-btn').addEventListener('click',() => {
+        let rollNumber =  document.getElementsByTagName('input')[0].value;
+       rollNumber.split('').length === 11 
+                                    ? 
+            window.location = `/request/${rollNumber}`
+                                    :
+             alert('Roll No is 11 digit') 
+    })
+</script>
+</body>
+</html>
